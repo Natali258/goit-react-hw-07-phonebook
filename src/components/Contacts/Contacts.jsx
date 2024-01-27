@@ -1,17 +1,19 @@
 import s from './Contacts.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectFilter } from '../../redux/contacts/slice';
+import { selectContacts, selectIsLoading } from '../../redux/contacts/slice';
 
 import { useEffect } from 'react';
 import {
   deleteContactThunk,
   fetchContacts,
 } from '../../redux/contacts/operations';
+import { selectFilter } from '../../redux/filterSlice/filterSlice';
 
 export const Contacts = () => {
   const dispatch = useDispatch();
   const contactsItems = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -38,6 +40,7 @@ export const Contacts = () => {
           </li>
         ))}
       </ul>
+      {isLoading && <h1>Loading.....</h1>}
     </div>
   );
 };

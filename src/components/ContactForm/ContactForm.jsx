@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import s from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from '../../redux/contacts/slice';
-import { nanoid } from '@reduxjs/toolkit';
 import { addContactThunk } from '../../redux/contacts/operations';
 
 export const ContactForm = () => {
@@ -22,7 +21,6 @@ export const ContactForm = () => {
     }
     dispatch(
       addContactThunk({
-        id: nanoid(),
         name,
         phone,
       })
