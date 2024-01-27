@@ -11,7 +11,6 @@ import {
 export const Contacts = () => {
   const dispatch = useDispatch();
   const contactsItems = useSelector(selectContacts);
-  console.log(contactsItems);
   const filter = useSelector(selectFilter);
 
   useEffect(() => {

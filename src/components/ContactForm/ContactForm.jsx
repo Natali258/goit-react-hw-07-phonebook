@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import s from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, addContact } from '../../redux/contacts/slice';
+import { selectContacts } from '../../redux/contacts/slice';
 import { nanoid } from '@reduxjs/toolkit';
+import { addContactThunk } from '../../redux/contacts/operations';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
@@ -20,15 +21,15 @@ export const ContactForm = () => {
       return;
     }
     dispatch(
-      addContact({
+      addContactThunk({
         id: nanoid(),
         name,
-        number,
+        phone,
       })
     );
 
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -45,10 +46,10 @@ export const ContactForm = () => {
         />
         <span className={s.label}>Number</span>
         <input
-          value={number}
-          onChange={e => setNumber(e.target.value)}
+          value={phone}
+          onChange={e => setPhone(e.target.value)}
           type="tel"
-          name="number"
+          name="phone"
           required
           className={s.input}
         />
