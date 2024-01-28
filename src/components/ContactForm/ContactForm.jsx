@@ -9,7 +9,6 @@ export const ContactForm = () => {
   const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  console.log(contacts);
   const addFormContact = e => {
     e.preventDefault();
     const isExist = contacts.some(contact => {
